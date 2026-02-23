@@ -63,12 +63,14 @@ Thresholds are percentages of your model's context window. Run `session_status` 
 | **40-50%** | ⚠️ Warn owner. Degradation begins on complex tasks. |
 | **>50%** | 🔴 Wrap now. |
 
-### Degradation signals — wrap immediately if you notice:
+### Degradation signals — warn the owner and recommend wrapping if you notice:
 - Repeating yourself (context distraction)
 - Forgetting earlier decisions (retrieval failure)
 - Ignoring relevant earlier context (recency bias)
 - Confusion from conflicting information (context clash)
 - Referencing something that was wrong earlier (context poisoning)
+
+Do not wrap unilaterally — warn first, let the owner decide when to wrap.
 
 ### Continuous persistence
 Don't wait for wrap to save important information. As decisions happen, append key outcomes to HANDOFF.md or a scratch file. If you have a long-term memory system, write decisions there immediately.
@@ -79,7 +81,7 @@ Test: if this session crashed now, would important stuff survive?
 
 ## Wrap
 
-Run when: owner says "wrap", you hit 50% context, or conversation concludes.
+Run when: owner says "wrap session", you hit 50% context, or conversation concludes.
 
 ### Step 1: Extract from the session
 Scan for: decisions, outcomes, open questions, corrections, next steps.

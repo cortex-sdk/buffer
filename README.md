@@ -72,6 +72,42 @@ Buffer's thresholds and degradation model are informed by:
 - No external dependencies
 - Works with any model and context window size
 
+## Dashboard
+
+Buffer includes a real-time dashboard that shows context window usage and live session activity.
+
+![Buffer Dashboard](dashboard/screenshot.png)
+
+**Left column** — context window percentage with color-coded zones, model info, and session management guides.
+
+**Right column** — live feed of what's happening in the current session: main focus, topics covered, decisions made, and outcomes.
+
+Install with one command:
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/sigmalabs-ai/buffer/main/dashboard/install.sh)
+```
+
+Or tell your agent: "Install the Buffer Dashboard." The installer downloads two files, sets up a background service (launchd on macOS, systemd on Linux), and starts the dashboard. No dependencies beyond Node.js.
+
+The dashboard runs locally at `http://127.0.0.1:8111`. To access it from other devices, expose it via [Tailscale Serve](https://tailscale.com/kb/1242/tailscale-serve):
+
+```bash
+tailscale serve --bg 8112 http://127.0.0.1:8111
+```
+
+See [dashboard/README.md](dashboard/README.md) for the full user guide.
+
+## Documentation
+
+- **[Getting Started](docs/getting-started.md)** — Install, first run, what to expect
+- **[How It Works](docs/how-it-works.md)** — The session lifecycle and five pillars
+- **[Buffer Reference](docs/buffer-reference.md)** — Full reference for the buffer skill
+- **[Optimizer Reference](docs/optimizer-reference.md)** — Full reference for buffer-optimizer
+- **[Configuration](docs/configuration.md)** — Thresholds, file templates, AGENTS.md structure guide
+- **[Design Decisions](docs/design-decisions.md)** — Why we made every major choice
+- **[Research](docs/research.md)** — The science behind the thresholds
+
 ## License
 
 Apache 2.0
