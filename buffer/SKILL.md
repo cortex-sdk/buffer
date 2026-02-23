@@ -1,31 +1,11 @@
 ---
 name: buffer
-description: Session management for OpenClaw — context window optimization, session continuity, and structured wrap/recovery. Use at session start, during sessions for context monitoring, and at session end for wrap. No external dependencies.
+description: Session runtime management for OpenClaw — context window optimization, session continuity, and structured wrap/recovery. Use at session start, during sessions for context monitoring, and at session end for wrap. No external dependencies.
 ---
 
 # Buffer
 
-Four modes: **setup**, **start**, **monitor**, **wrap**. Match your situation, run that mode.
-
----
-
-## Setup
-
-Run once on first install or when owner asks to set up session management.
-
-**1. Create HANDOFF.md** if missing:
-```markdown
-# HANDOFF.md
-## Current Work
-## Stopping Point
-## Key Outcomes
-## Open Questions
-## Next Steps
-```
-
-**2. Validate MEMORY.md** — must contain only: this week (2-3 lines), priorities (≤5), project states (one line each), key people. Target: ≤1.5KB. If missing, create minimal version.
-
-**3. Verify AGENTS.md** has context management rules (thresholds, wrap triggers, output management). Flag if missing.
+Three modes: **start**, **monitor**, **wrap**. Run the one that matches your situation.
 
 ---
 
@@ -37,7 +17,7 @@ Run at every new session. Goal: recover context in under 30 seconds.
 2. Read MEMORY.md — priorities, projects, people.
 3. Start working. Do not read other files unless the task requires them.
 
-**No HANDOFF.md?** Check recent `memory/*.md` files, try `memory_search`, then ask the owner.
+**No HANDOFF.md?** Check recent `memory/*.md` files, try `memory_search`, then ask the owner. Consider running `buffer-optimizer` to set up your workspace.
 
 ---
 
@@ -65,9 +45,9 @@ Thresholds are percentages of your model's context window. Run `session_status` 
 | **<25%** | No concern. Full performance. |
 | **25-40%** | Be intentional about what you load. |
 | **40-50%** | ⚠️ Warn owner. Degradation begins on complex tasks. |
-| **>50%** | 🔴 Wrap now (Mode 4). |
+| **>50%** | 🔴 Wrap now. |
 
-**Why 50% and not higher?** Research shows context quality degrades well before the window fills. Even on simple retrieval tasks, models show measurable accuracy drops at 50% capacity. On the complex tasks agents actually do — synthesis, multi-step reasoning, maintaining coherent plans — degradation starts earlier. The 50% operational cap provides a safety margin. See the README for detailed research.
+**Why 50% and not higher?** Research shows context quality degrades well before the window fills — on complex tasks (synthesis, planning, multi-step reasoning), degradation starts at 40-50% capacity. The 50% cap provides a safety margin. See the README for detailed research.
 
 ### Degradation signals — wrap immediately if you notice:
 - Repeating yourself (context distraction)
